@@ -24,6 +24,7 @@ def datos_equipo(dicc_ligas, liga, jornada, temporada, datos, localia):  # Funci
     # Listas para almacenar los datos correspondientes
     minuto = []
     equipo = []
+    localias = []
     xg = []
     jugador = []
     zona_contacto = []
@@ -38,8 +39,10 @@ def datos_equipo(dicc_ligas, liga, jornada, temporada, datos, localia):  # Funci
             if clave == 'h_a': 
                 if localia[indice][clave] == 'h':
                     equipo.append(localia[indice]['h_team'])
+                    localias.append('local')
                 else:
                     equipo.append(localia[indice]['a_team'])
+                    localias.append('visitante')
             elif clave == 'minute':
                 minuto.append(int(localia[indice][clave]))
             elif clave == 'xG':
@@ -61,8 +64,8 @@ def datos_equipo(dicc_ligas, liga, jornada, temporada, datos, localia):  # Funci
             elif clave == 'lastAction':
                 accion_anterior.append(localia[indice][clave]) 
             else: pass  # Fin del bucle FOR
-    columnas = ['jugador', 'equipo', 'minuto', 'xg', 'zona_contacto', 'resultado', 'x', 'y', 'situacion', 'asistente', 'accion_anterior']
-    df = pd.DataFrame([jugador, equipo, minuto, xg, zona_contacto, resultado, x, y, situacion, asistente, accion_anterior],index=columnas)
+    columnas = ['jugador','equipo','localia','minuto','xg','zona_contacto','resultado','x','y','situacion','asistente','accion_anterior']
+    df = pd.DataFrame([jugador,equipo,localias,minuto,xg,zona_contacto,resultado,x,y,situacion,asistente,accion_anterior],index=columnas)
     df = df.T
     id = dicc_ligas[liga] + '_' + jornada + '_' + temporada + '_' + equipo_local + '-' + equipo_visitante
     df['id'] = id
