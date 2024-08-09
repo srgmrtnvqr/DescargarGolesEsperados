@@ -21,7 +21,44 @@ Los datos descargados son copiados en un Excel para su posterior análisis.
 
 ## Guía de usuario
 ---
+Pasos a seguir para descargar los goles esperados de un partido.
 
+- Primero tienes que ejecutar la primera celda de código, que sirve para la descarga del partido, el tratamiento de los datos y la representación en un gráfico.
+  ```
+  import descarga_tratamiento
+  import pandas as pd
+  import matplotlib.pyplot as plt
+  ```
+  
+- Después, tienes que ejecutar la primera celda de código de `` # Selección del partido para descargar ``.
+  
+- Al ejecutar la siguiente celda, tendrás que escribir con el teclado la liga, la temporada y la jornada que corresponden al partido que quieres descargar.
+  ```
+  # Para descargar un partido de La Liga 
+  while True:
+      liga = str(input('¿Qué Liga es?: ')).upper()    #ESP
+      if liga in dicc_ligas:
+          break
+      else:
+          print('Introduce una liga disponible')
+  temporada = str(input('¿Qué temporada es?: '))  #23-24
+  jornada = str(input('¿Qué jornada es?: '))  #37
+  ```
+
+  Este es un ejemplo para descargar el Almería - Getafe de la jornada 33 de la temporada 23-24.
+  ``
+    - Cuando ejecutes la celda de código aparecerá la primera pregunta: ¿Qué Liga es?
+      La respuesta es ESP
+    - La pregunta que aparecerá después es: ¿Qué temporada es?
+      La respuesta es 23-24
+    - Para finalizar aparecerá la última pregunta: ¿Qué jornada es?
+      La respuesta es 33
+      
+- La última celda de código de este apartado sirve para introducir el id correspondiente al partido. Este id aparece en la página web " https://understat.com/match/' + partido ", donde partido es el id correspondiente.
+``` partido = str(input('¿Cuál es el ID del partido que quieres descargar: '))
+  enlace = 'https://understat.com/match/' + partido
+```
+`` Para el partido del ejemplo anterior el id que hay que introducir es el siguiente: 23005 ``
 
 ## Dependencias
 ---
